@@ -1,7 +1,14 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { loading } from "../assets";
 
 const Generating = ({ className }) => {
+  // Validate loading image
+  if (!loading) {
+    console.error("Loading image not found");
+    return null;
+  }
+
   return (
     <div
       className={`flex items-center h-[3.5rem] px-6 bg-n-8/80 rounded-[1.7rem] ${
@@ -12,6 +19,14 @@ const Generating = ({ className }) => {
       AI is generating
     </div>
   );
+};
+
+Generating.propTypes = {
+  className: PropTypes.string,
+};
+
+Generating.defaultProps = {
+  className: "",
 };
 
 export default Generating;
