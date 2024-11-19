@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import Section from "./Section";
 import { socials } from "../constants";
 
@@ -10,14 +11,16 @@ const Footer = () => {
           &copy; {new Date().getFullYear()}. All rights reserved.
         </p>
         <ul className="flex gap-5 flex-wrap">
-          {socials.map((item) => (
+          {socials.map(({ id, url, iconUrl, title }) => (
             <a
-              href={item.url}
-              key={item.id}
+              href={url}
+              key={id}
               target="_blank"
+              rel="noopener noreferrer"
+              aria-label={title}
               className="flex items-center justify-center w-10 h-10 bg-n-7 rounded-full transition-colors hover:bg-n-6"
             >
-              <img src={item.iconUrl} alt={item.title} width={16} height={16} />
+              <img src={iconUrl} alt={title} width={16} height={16} />
             </a>
           ))}
         </ul>
@@ -26,4 +29,12 @@ const Footer = () => {
   );
 };
 
-export default Footer;
+Footer.protoTypes = {
+  className: PropTypes.string,
+};
+
+Footer.defaultProps = {
+  className: "",
+};
+
+export default React.memo(Footer);
