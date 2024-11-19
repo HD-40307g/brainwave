@@ -1,5 +1,6 @@
 import React from "react";
 import { companyLogos } from "../constants";
+import PropTypes from "prop-types";
 
 const CompanyLogos = ({ className }) => {
   return (
@@ -13,7 +14,7 @@ const CompanyLogos = ({ className }) => {
             className="flex items-center justify-center flex-1 h-[8.5rem]"
             key={index}
           >
-            <img src={logo} alt={logo} width={134} height={28} />
+            <img src={logo} alt={logo} width={134} height={28} loading="lazy" />
           </li>
         ))}
       </ul>
@@ -21,4 +22,12 @@ const CompanyLogos = ({ className }) => {
   );
 };
 
-export default CompanyLogos;
+CompanyLogos.protoTypes = {
+  className: PropTypes.string,
+};
+
+CompanyLogos.defaultProps = {
+  className: "",
+};
+
+export default React.memo(CompanyLogos);
