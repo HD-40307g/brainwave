@@ -1,5 +1,6 @@
 import React from "react";
 import Tagline from "./Tagline";
+import PropTypes from "prop-types";
 
 const Heading = ({ className, title, text, tag }) => {
   return (
@@ -11,6 +12,13 @@ const Heading = ({ className, title, text, tag }) => {
       {text && <p className="body-2 mt-4 text-n-4">{text}</p>}
     </div>
   );
+};
+
+Heading.propTypes = {
+  className: PropTypes.string,
+  title: PropTypes.string,
+  text: PropTypes.string,
+  tag: PropTypes.string,
 };
 
 export default Heading;
