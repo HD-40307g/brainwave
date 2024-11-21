@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import SectionSvg from "../assets/svg/SectionSvg";
 
 const Section = ({
@@ -25,7 +26,7 @@ const Section = ({
       {crosses && (
         <>
           <div
-            className={`hidden absolute top-0 left-7.5 right-7.5 bg-stroke-1 ${
+            className={`hidden absolute top-0 left-7.5 right-7.5 h-0.25 bg-stroke-1 ${
               crossesOffset && crossesOffset
             } pointer-events-none lg:block xl:left-10 right-10`}
           />
@@ -36,4 +37,19 @@ const Section = ({
   );
 };
 
-export default Section;
+Section.propTypes = {
+  children: PropTypes.node.isRequired,
+  className: PropTypes.string,
+  customPaddings: PropTypes.string,
+  crosses: PropTypes.bool,
+  crossesOffset: PropTypes.string,
+};
+
+Section.defaultProps = {
+  className: "",
+  customPaddings: "",
+  crosses: false,
+  crossesOffset: "",
+};
+
+export default React.memo(Section);
