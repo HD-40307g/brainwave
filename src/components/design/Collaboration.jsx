@@ -1,3 +1,4 @@
+import React from "react";
 import { curve1, curve2 } from "../../assets";
 
 export const RightCurve = () => {
