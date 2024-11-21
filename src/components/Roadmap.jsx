@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import Button from "./Button";
 import Heading from "./Heading";
 import Section from "./Section";
@@ -7,11 +8,11 @@ import { roadmap } from "../constants";
 import { check2, grid, loading1 } from "../assets";
 import { Gradient } from "./design/Roadmap";
 
-const Roadmap = () => (
+const Roadmap = () => {
+  return (
   <Section className="overflow-hidden" id="roadmap">
     <div className="container md:pb-10">
-      <Heading tag="Ready to get started" title="What we’re working on" />
-
+      <Heading tag="Ready to get started" title="What we&apos;re working on" />
       <div className="relative grid gap-6 md:grid-cols-2 md:gap-4 md:pb-[7rem]">
         {roadmap.map((item) => {
           const status = item.status === "done" ? "Done" : "In progress";
@@ -31,6 +32,7 @@ const Roadmap = () => (
                     width={550}
                     height={550}
                     alt="Grid"
+                    loading="lazy"
                   />
                 </div>
                 <div className="relative z-1">
@@ -56,6 +58,7 @@ const Roadmap = () => (
                       width={628}
                       height={426}
                       alt={item.title}
+                      loading="lazy"
                     />
                   </div>
                   <h4 className="h4 mb-4">{item.title}</h4>
@@ -74,6 +77,21 @@ const Roadmap = () => (
       </div>
     </div>
   </Section>
-);
+  );
+};
 
-export default Roadmap;
+Roadmap.propTypes = {
+  items: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      date: PropTypes.string.isRequired,
+      title: PropTypes.string.isRequired,
+      text: PropTypes.string.isRequired,
+      imageUrl: PropTypes.string.isRequired,
+      status: PropTypes.string.isRequired,
+      colorful: PropTypes.bool,
+    })
+  ).isRequired
+};
+
+export default React.memo(Roadmap);
