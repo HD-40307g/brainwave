@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { notificationImages } from "../constants";
 import { notification1 } from "../assets";
 
@@ -11,10 +12,11 @@ const Notification = ({ className, title }) => {
     >
       <img
         src={notification1}
-        alt="image"
+        alt="Notification"
         width={62}
         height={62}
         className="rounded-xl"
+        loading="lazy"
       />
       <div className="flex-1">
         <h6 className="mb-1 font-semibold text-base">{title}</h6>
@@ -31,15 +33,25 @@ const Notification = ({ className, title }) => {
                   className="w-full"
                   width={20}
                   height={20}
+                  loading="lazy"
                 />
               </li>
             ))}
           </ul>
-          <div className="body-2 text-n-16">1m ago</div>
+          <div className="body-2 text-n-13">1m ago</div>
         </div>
       </div>
     </div>
   );
 };
 
-export default Notification;
+Notification.propTypes = {
+  className: PropTypes.string,
+  title: PropTypes.string.isRequired,
+};
+
+Notification.defaultProps = {
+  className: "",
+};
+
+export default React.memo(Notification);
